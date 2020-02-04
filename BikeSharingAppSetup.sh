@@ -1,6 +1,5 @@
 RGNAME=k8s
 AKSNAME=BikeShareTest2
-DEVSPACENAME=dev #for ease, don't change this for the demo
 LOC=eastus
 
 echo "Check helm version, ensure it's v3.x"
@@ -9,7 +8,7 @@ helm version --short
 az group create --name $RGNAME  --location $LOC
 az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys
 
-az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space $DEVSPACENAME --yes
+az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
 git clone https://github.com/Azure/dev-spaces
 cd dev-spaces/samples/BikeSharingApp/
