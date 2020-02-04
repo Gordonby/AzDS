@@ -20,9 +20,11 @@ FQDN=$(azds show-context -o json | jq -r '.[] | .hostSuffix')
 echo $FQDN
 
 cd charts/
+echo "The current working directory: $PWD"
+
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
 echo "installing bikeshare app on $(date)"
-helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m
+helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug
 
 azds list-uris
