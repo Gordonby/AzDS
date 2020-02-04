@@ -19,6 +19,7 @@ echo $FQDN
 cd charts/
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
+echo "installing bikeshare app on $(date)"
 helm install bikesharing . --dependency-update --namespace dev --atomic
 
 azds list-uris
