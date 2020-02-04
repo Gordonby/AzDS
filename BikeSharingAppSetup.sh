@@ -1,5 +1,7 @@
+RAND=$(shuf -i 1-99 -n 1)
+
 RGNAME=k8s
-AKSNAME=BikeShareTest2
+AKSNAME=BikeShareTest${RAND}
 LOC=eastus
 
 echo "Check helm version, ensure it's v3.x"
