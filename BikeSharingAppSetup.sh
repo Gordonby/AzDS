@@ -22,7 +22,7 @@ cd charts/
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
 echo "trying a rough sleep to see if this helps problem installing"
-sleep(120)
+sleep 120
 
 echo "installing bikeshare app on $(date)"
 helm install bikesharing . --dependency-update --namespace dev --atomic
