@@ -7,6 +7,7 @@ LOC=eastus
 echo "Check helm version, ensure it's v3.x"
 helm version --short
 
+echo "Creating $AKSNAME AKS cluster"
 az group create --name $RGNAME  --location $LOC
 az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys
 
