@@ -14,6 +14,10 @@ az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-s
 az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
 mkdir $AKSNAME
+cd $AKSNAME
+echo "The current working directory: $PWD"
+
+echo "Cloning Dev-Spaces repo"
 git clone https://github.com/Azure/dev-spaces
 cd $AKSNAME/dev-spaces/samples/BikeSharingApp/
 
