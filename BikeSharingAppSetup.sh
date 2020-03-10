@@ -19,7 +19,7 @@ echo "The current working directory: $PWD"
 
 echo "Cloning Dev-Spaces repo"
 git clone https://github.com/Azure/dev-spaces
-cd $AKSNAME/dev-spaces/samples/BikeSharingApp/
+cd dev-spaces/samples/BikeSharingApp/
 
 FQDN=$(azds show-context -o json | jq -r '.[] | .hostSuffix')
 echo "---"
