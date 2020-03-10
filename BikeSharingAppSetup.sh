@@ -39,6 +39,16 @@ echo "The current working directory: $PWD"
 echo "Replacing FQDN placeholder in values.yaml - $FQDN"
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
+echo "Waiting for 2 minutes to allow the gateway service in the dev namespace time to get an IP"
+echo "Checking at $(date) (still 2 minutes left to wait...)"
+kubectl get svc gateway -n dev
+sleep 1m
+echo "Checking at $(date) (still 1 minute left to wait...)"
+kubectl get svc gateway -n dev
+sleep 1m
+echo "Checking at $(date)"
+kubectl get svc gateway -n dev
+
 echo "Installing bikeshare app on $(date)"
 echo "command is: helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug"
 helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug
