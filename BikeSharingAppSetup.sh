@@ -40,8 +40,8 @@ echo "Replacing FQDN placeholder in values.yaml - $FQDN"
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
 echo "Installing bikeshare app on $(date)"
-echo "command is: helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug"
-helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug
+echo "command is: helm install bikesharing $PWD --dependency-update --namespace dev --atomic --timeout 9m --debug"
+helm install bikesharing $PWD --dependency-update --namespace dev --atomic --timeout 9m --debug
 
 #echo "Waiting for 2 minutes to allow the gateway service in the dev namespace time to get an IP"
 #echo "Checking at $(date) (still 2 minutes left to wait...)"
