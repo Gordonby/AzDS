@@ -13,19 +13,22 @@ az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-s
 
 az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
-mkdir $AKSNAME && cd "$_"
+mkdir $AKSNAME
 git clone https://github.com/Azure/dev-spaces
-cd dev-spaces/samples/BikeSharingApp/
+cd $AKSNAME/dev-spaces/samples/BikeSharingApp/
 
 FQDN=$(azds show-context -o json | jq -r '.[] | .hostSuffix')
-echo $FQDN
+echo "---"
+echo "The AZDS FQDN is $FQDN"
 
 cd charts/
+echo "---"
 echo "The current working directory: $PWD"
 
+echo "Replacing FQDN placeholder in values.yaml - $FQDN"
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
-echo "installing bikeshare app on $(date)"
+echo "Installing bikeshare app on $(date)"
 helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug
 
 azds list-uris
