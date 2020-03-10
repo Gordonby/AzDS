@@ -29,6 +29,8 @@ echo "Replacing FQDN placeholder in values.yaml - $FQDN"
 sed -i "s/<REPLACE_ME_WITH_HOST_SUFFIX>/${FQDN}/g" values.yaml
 
 echo "Installing bikeshare app on $(date)"
+echo "command is: helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug"
 helm install bikesharing . --dependency-update --namespace dev --atomic --timeout 9m --debug
 
+echo "Listing AZDS URIs"
 azds list-uris
