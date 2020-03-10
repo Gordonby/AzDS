@@ -13,6 +13,7 @@ az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-s
 
 az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
+mkdir $AKSNAME && cd "$_"
 git clone https://github.com/Azure/dev-spaces
 cd dev-spaces/samples/BikeSharingApp/
 
