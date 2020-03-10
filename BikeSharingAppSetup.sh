@@ -11,6 +11,10 @@ echo "Creating ${AKSNAME} AKS cluster"
 az group create --name $RGNAME  --location $LOC
 az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys --node-vm-size=Standard_B2s
 
+echo "Checking the nodes"
+kubectl get nodes
+
+echo "Enabling Dev-Spaces"
 az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
 mkdir $AKSNAME
