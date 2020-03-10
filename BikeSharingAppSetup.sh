@@ -9,7 +9,7 @@ helm version --short
 
 echo "Creating ${AKSNAME} AKS cluster"
 az group create --name $RGNAME  --location $LOC
-az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys
+az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys --node-vm-size=Standard_B2s
 
 az aks use-dev-spaces -g $RGNAME -n $AKSNAME --space dev --yes
 
