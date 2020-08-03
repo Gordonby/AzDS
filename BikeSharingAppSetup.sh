@@ -9,7 +9,8 @@ helm version --short
 
 echo "Creating ${AKSNAME} AKS cluster"
 az group create --name $RGNAME  --location $LOC
-az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys #--node-vm-size=Standard_B2s
+az aks create -g $RGNAME -n $AKSNAME --location $LOC --disable-rbac --generate-ssh-keys --aks-custom-headers CustomizedUbuntu=aks-ubuntu-1804,ContainerRuntime=containerd #--node-vm-size=Standard_B2s 
+#az aks create --name myAKSCluster --resource-group myResourceGroup 
 
 echo "Setting the Kube context"
 az aks get-credentials -g $RGNAME -n $AKSNAME 
